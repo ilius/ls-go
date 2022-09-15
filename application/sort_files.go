@@ -28,7 +28,12 @@ func sortFiles(files []*DisplayItem, col string, reverse bool) {
 		} else {
 			sort.Sort(ByTime(files))
 		}
-	// case S_VERSION:
+	case S_VERSION:
+		if reverse {
+			sort.Sort(sort.Reverse(ByVersion(files)))
+		} else {
+			sort.Sort(ByVersion(files))
+		}
 	case S_EXTENSION:
 		if reverse {
 			sort.Sort(sort.Reverse(ByExtension(files)))

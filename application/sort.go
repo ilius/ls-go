@@ -104,6 +104,17 @@ func (s ByTime) Less(i, j int) bool {
 	return (*tm1).After(*tm2)
 }
 
+type ByVersion ItemSorter
+
+func (s ByVersion) Len() int      { return len(s) }
+func (s ByVersion) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func (s ByVersion) Less(i, j int) bool {
+	// ls uses filevercmp func from "filevercmp.h" from glib
+	// https://git.savannah.gnu.org/cgit/gnulib.git/tree/lib/filevercmp.c
+	return s[i].Basename < s[j].Basename
+}
+
 type ByExtension ItemSorter
 
 func (s ByExtension) Len() int      { return len(s) }
