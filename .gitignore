@@ -1,0 +1,7 @@
+.foo*
+.perm/
+ls-go
+ls-go-*
+ls-go.exe
+*.swp
+*.prof
