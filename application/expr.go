@@ -40,8 +40,9 @@ func compileExpr(exprStr string) *vm.Program {
 
 type patcher struct{}
 
-func (p *patcher) Enter(_ *ast.Node)   {}
-func (p *patcher) Exit(node *ast.Node) {}
+func (p *patcher) Enter(_ *ast.Node)    {}
+func (p *patcher) Exit(node *ast.Node)  {}
+func (p *patcher) Visit(node *ast.Node) {}
 
 func parseDuration(s string) time.Duration {
 	dur, err := time.ParseDuration(s)
