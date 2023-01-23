@@ -15,6 +15,9 @@ func FormatDuration(dur time.Duration) string {
 		past = true
 		dur = -dur
 	}
+	if dur < time.Second {
+		return "now"
+	}
 	parts := []string{}
 	days := dur / Day
 	if days == 1 {
@@ -24,18 +27,16 @@ func FormatDuration(dur time.Duration) string {
 		parts = append(parts, fmt.Sprintf("%d days", days))
 		dur -= days * Day
 	}
-	if dur >= time.Second {
-		hours := dur / time.Hour
-		dur -= hours * time.Hour
-		minutes := dur / time.Minute
-		dur -= minutes * time.Minute
-		parts = append(parts, fmt.Sprintf(
-			"%.2d:%.2d:%.2d",
-			hours,
-			minutes,
-			int(dur.Seconds()),
-		))
-	}
+	hours := dur / time.Hour
+	dur -= hours * time.Hour
+	minutes := dur / time.Minute
+	dur -= minutes * time.Minute
+	parts = append(parts, fmt.Sprintf(
+		"%.2d:%.2d:%.2d",
+		hours,
+		minutes,
+		int(dur.Seconds()),
+	))
 	// colors.Duration.Days
 	// colors.Duration.Hours
 	// colors.Duration.Minutes
