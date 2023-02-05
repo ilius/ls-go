@@ -10,7 +10,7 @@ require (
 	github.com/ilius/go-table v0.7.2
 	github.com/ilius/goopt v0.1.0
 	github.com/ilius/is/v2 v2.3.2
-	github.com/itchyny/timefmt-go v0.1.4
+	github.com/itchyny/timefmt-go v0.1.5
 )
 
 require github.com/ilius/go-lru v0.1.0 // indirect
