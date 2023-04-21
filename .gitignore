@@ -3,5 +3,6 @@
 ls-go
 ls-go-*
 ls-go.exe
+.vscode
 *.swp
 *.prof
