@@ -29,6 +29,7 @@
 package escape
 
 import (
+	"log"
 	"strconv"
 	"unicode/utf8"
 )
@@ -51,6 +52,9 @@ func EscapeToASCII(s string) string {
 		width = 1
 		if r >= utf8.RuneSelf {
 			r, width = utf8.DecodeRuneInString(s)
+			if r == utf8.RuneError {
+				log.Printf("RuneError from DecodeRuneInString for %#v", s)
+			}
 		}
 		if width == 1 && r == utf8.RuneError {
 			buf = append(buf, `\x`...)
