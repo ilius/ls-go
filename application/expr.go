@@ -264,7 +264,7 @@ func (f *ExprGetter) Format(item any, value any) (string, error) {
 	case uint32:
 		return app.Colorize(strconv.FormatInt(int64(vt), 10), colors.Expr.Integer) + Reset, nil
 	case float64:
-		return app.Colorize(strconv.FormatFloat(vt, 'f', exprFloatPrecision, 65), colors.Expr.Float), nil
+		return app.Colorize(strconv.FormatFloat(vt, 'f', exprFloatPrecision, 64), colors.Expr.Float), nil
 	case *time.Time:
 		if vt == nil {
 			return "", nil
