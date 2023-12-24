@@ -6,11 +6,11 @@ import (
 	"os"
 	"strconv"
 
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 )
 
 type SizeGetterPlain struct {
-	format SizeFormat
+	format c.SizeFormat
 }
 
 // use metric system (or SI) to format size, powers of 1000
@@ -79,11 +79,11 @@ func (f *SizeGetterPlain) Format(item any, value any) (string, error) {
 		return "", fmt.Errorf("Format: invalid value type %T, must be uint64", value)
 	}
 	switch f.format {
-	case SizeFormatInteger:
+	case c.SizeFormatInteger:
 		return strconv.FormatUint(size, 10), nil
-	case SizeFormatMetric:
+	case c.SizeFormatMetric:
 		return f.sizeStringMetric(size), nil
-	case SizeFormatLegacy:
+	case c.SizeFormatLegacy:
 		return f.sizeStringLegacy(size), nil
 	}
 	return "", fmt.Errorf("invalid size format %v", f.format)

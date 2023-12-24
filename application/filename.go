@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/ilius/go-table"
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 	"github.com/ilius/ls-go/lscolors"
 )
 
@@ -83,7 +83,7 @@ func (f *FileNameGetter) ValueString(colName string, item any) (string, error) {
 				target = link.target
 			}
 		}
-		targetFormatted, err := app.FormatValue(C_LinkTarget, target)
+		targetFormatted, err := app.FormatValue(c.C_LinkTarget, target)
 		if err != nil {
 			return "", err
 		}

@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"time"
 
-	. "github.com/ilius/go-table"
-	. "github.com/ilius/ls-go/common"
+	"github.com/ilius/go-table"
+	c "github.com/ilius/ls-go/common"
 	"github.com/ilius/ls-go/iface"
 	"github.com/ilius/ls-go/lstime"
 )
@@ -23,11 +23,11 @@ var (
 func timeColumnFromInput(input string) string {
 	switch input {
 	case "", "mtime", "modified":
-		return C_MTime
+		return c.C_MTime
 	case "ctime", "status", "change":
-		return C_CTime
+		return c.C_CTime
 	case "atime", "access", "use", "accessed":
-		return C_ATime
+		return c.C_ATime
 	case "birth", "creation", "created":
 		log.Fatalf("unsupported --time=%s\n", input)
 	}
@@ -42,117 +42,117 @@ func makeTableSpec(
 	nameParams *FileNameParams,
 	timeParams *lstime.TimeParams,
 	exprList []string,
-) *TableSpec {
-	tableSpec := NewTableSpec()
-	if cols[C_Inode] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_Inode,
+) *table.TableSpec {
+	tableSpec := table.NewTableSpec()
+	if cols[c.C_Inode] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_Inode,
 			Title:     "inode",
 			Type:      t_uint64,
-			Alignment: AlignmentRight,
+			Alignment: table.AlignmentRight,
 			Getter:    &InodeGetter{},
 		})
 	}
-	if cols[C_Blocks] {
-		tableSpec.AddColumn(&Column{
-			Name:       C_Blocks,
+	if cols[c.C_Blocks] {
+		tableSpec.AddColumn(&table.Column{
+			Name:       c.C_Blocks,
 			Title:      "Blocks",
 			ShortTitle: "#B",
 			Type:       t_uint64,
-			Alignment:  AlignmentRight,
+			Alignment:  table.AlignmentRight,
 			Getter:     &BlocksGetter{},
 		})
 	}
-	if cols[C_ModeOct] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_ModeOct,
+	if cols[c.C_ModeOct] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_ModeOct,
 			Title:     "Oct",
 			Type:      t_FileMode,
-			Alignment: AlignmentRight,
+			Alignment: table.AlignmentRight,
 			Getter:    NewOctalModeGetter(colors),
 		})
 	}
-	if cols[C_Mode] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_Mode,
+	if cols[c.C_Mode] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_Mode,
 			Title:     "Mode",
 			Type:      t_FileMode,
 			Alignment: nil,
 			Getter:    NewModeGetter(colors),
 		})
 	}
-	if cols[C_HardLinks] {
-		tableSpec.AddColumn(&Column{
-			Name:       C_HardLinks,
+	if cols[c.C_HardLinks] {
+		tableSpec.AddColumn(&table.Column{
+			Name:       c.C_HardLinks,
 			Title:      "Hard Links",
 			ShortTitle: "#L",
 			Type:       t_uint64,
-			Alignment:  AlignmentRight,
+			Alignment:  table.AlignmentRight,
 			Getter:     &HardLinksGetter{},
 		})
 	}
-	if cols[C_Owner] {
-		tableSpec.AddColumn(&Column{
-			Name:       C_Owner,
+	if cols[c.C_Owner] {
+		tableSpec.AddColumn(&table.Column{
+			Name:       c.C_Owner,
 			Title:      "Owner",
 			ShortTitle: "O", // or "U"?
 			Type:       t_string,
-			Alignment:  AlignmentCenter,
+			Alignment:  table.AlignmentCenter,
 			Getter:     NewOwnerGetter(colors),
 		})
 	}
-	if cols[C_Group] {
-		tableSpec.AddColumn(&Column{
-			Name:       C_Group,
+	if cols[c.C_Group] {
+		tableSpec.AddColumn(&table.Column{
+			Name:       c.C_Group,
 			Title:      "Group",
 			ShortTitle: "G",
 			Type:       t_string,
-			Alignment:  AlignmentCenter,
+			Alignment:  table.AlignmentCenter,
 			Getter:     NewGroupGetter(colors),
 		})
 	}
-	if cols[C_Size] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_Size,
+	if cols[c.C_Size] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_Size,
 			Title:     "Size",
 			Type:      t_uint64,
-			Alignment: AlignmentRight,
+			Alignment: table.AlignmentRight,
 			Getter:    NewSizeGetter(colors, formatter.SizeFormat()),
 		})
 	}
-	if cols[C_MTime] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_MTime,
+	if cols[c.C_MTime] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_MTime,
 			Title:     "Modified Time",
 			Type:      t_timePtr,
-			Alignment: AlignmentRight,
+			Alignment: table.AlignmentRight,
 			Getter:    NewMTimeGetter(colors, timeParams),
 		})
 	}
-	if cols[C_CTime] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_CTime,
+	if cols[c.C_CTime] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_CTime,
 			Title:     "Change Time",
 			Type:      t_timePtr,
-			Alignment: AlignmentRight,
+			Alignment: table.AlignmentRight,
 			Getter:    NewCTimeGetter(colors, timeParams),
 		})
 	}
-	if cols[C_ATime] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_ATime,
+	if cols[c.C_ATime] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_ATime,
 			Title:     "Access Time",
 			Type:      t_timePtr,
-			Alignment: AlignmentRight,
+			Alignment: table.AlignmentRight,
 			Getter:    NewATimeGetter(colors, timeParams),
 		})
 	}
-	if cols[C_Name] {
-		tableSpec.AddColumn(&Column{
-			Name:      C_Name,
+	if cols[c.C_Name] {
+		tableSpec.AddColumn(&table.Column{
+			Name:      c.C_Name,
 			Title:     "Name",
 			Type:      t_string,
-			Alignment: AlignmentLeft,
+			Alignment: table.AlignmentLeft,
 			Getter:    NewFileNameGetter(colors, nameParams),
 		})
 	}
@@ -163,7 +163,7 @@ func makeTableSpec(
 			check(err)
 			alignment, err := getter.Alignment()
 			check(err)
-			tableSpec.AddColumn(&Column{
+			tableSpec.AddColumn(&table.Column{
 				Name:      fmt.Sprintf("expr%d", i+1),
 				Title:     exprStr,
 				Type:      _type,

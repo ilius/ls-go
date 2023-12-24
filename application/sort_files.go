@@ -3,67 +3,73 @@ package application
 import (
 	"sort"
 
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 )
 
 func sortFiles(files []*DisplayItem, col string, reverse bool) {
 	switch col {
-	case S_NONE:
+	case c.S_NONE:
 		break // do not sort
-	case S_SIZE:
+	case c.S_SIZE:
 		if reverse {
 			sort.Sort(sort.Reverse(BySize(files)))
 		} else {
 			sort.Sort(BySize(files))
 		}
-	case S_FILESIZE:
+	case c.S_FILESIZE:
 		if reverse {
 			sort.Sort(sort.Reverse(ByFileSize(files)))
 		} else {
 			sort.Sort(ByFileSize(files))
 		}
-	case S_TIME:
+	case c.S_TIME:
 		if reverse {
 			sort.Sort(sort.Reverse(ByTime(files)))
 		} else {
 			sort.Sort(ByTime(files))
 		}
 	// case S_VERSION:
-	case S_EXTENSION:
+	case c.S_EXTENSION:
 		if reverse {
 			sort.Sort(sort.Reverse(ByExtension(files)))
 		} else {
 			sort.Sort(ByExtension(files))
 		}
-	case S_KIND:
+	case c.S_KIND:
 		if reverse {
 			sort.Sort(sort.Reverse(ByKind(files)))
 		} else {
 			sort.Sort(ByKind(files))
 		}
-	case S_INODE:
+	case c.S_INODE:
 		if reverse {
 			sort.Sort(sort.Reverse(ByInode(files)))
 		} else {
 			sort.Sort(ByInode(files))
 		}
-	case S_LINKS:
+	case c.S_LINKS:
 		if reverse {
 			sort.Sort(sort.Reverse(ByHardLinks(files)))
 		} else {
 			sort.Sort(ByHardLinks(files))
 		}
-	case S_MODE:
+	case c.S_MODE:
 		if reverse {
 			sort.Sort(sort.Reverse(ByMode(files)))
 		} else {
 			sort.Sort(ByMode(files))
 		}
-	case S_NAME_LEN:
+	case c.S_NAME_LEN:
 		if reverse {
 			sort.Sort(sort.Reverse(ByNameLength(files)))
 		} else {
 			sort.Sort(ByNameLength(files))
+		}
+	case c.S_NUMERIC_NAME:
+		if reverse {
+			sort.Sort(sort.Reverse(NumericNameSorter(files)))
+		} else {
+			sort.Sort(NumericNameSorter(files))
 		}
 	default:
 		if reverse {
@@ -79,14 +85,14 @@ func sortDirs(dirs []*DisplayItem, col string, reverse bool) {
 		return
 	}
 	switch col {
-	case S_SIZE:
+	case c.S_SIZE:
 		if reverse {
 			sort.Sort(sort.Reverse(ByDirContentsCount(dirs)))
 			return
 		}
 		sort.Sort(ByDirContentsCount(dirs))
 		return
-	case S_FILESIZE:
+	case c.S_FILESIZE:
 		if reverse {
 			sort.Sort(sort.Reverse(DefaultSorter(dirs)))
 			return

@@ -5,8 +5,7 @@ import (
 	"os"
 
 	"github.com/ilius/go-table"
-	"github.com/ilius/ls-go/common"
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 	"github.com/ilius/ls-go/filesystem"
 	lscsv "github.com/ilius/ls-go/format/csv"
 	lshtml "github.com/ilius/ls-go/format/html"
@@ -80,7 +79,7 @@ func (app *Application) Exit() {
 func (app *Application) onFileError(err error, path string) {
 	if os.IsNotExist(err) || os.IsPermission(err) {
 		app.exitStatus = 2
-		app.AddError(&common.FileError{
+		app.AddError(&c.FileError{
 			Path: path,
 			Msg:  err.Error(),
 		})
@@ -113,14 +112,14 @@ func (app *Application) makeFormatter(colorsEnabled bool) iface.Formatter {
 }
 
 func (app *Application) longSet(cols map[string]bool, nameParams *FileNameParams) {
-	cols[C_Mode] = true
-	cols[C_HardLinks] = true
-	cols[C_Owner] = true
-	cols[C_Group] = true
-	cols[C_Size] = true
+	cols[c.C_Mode] = true
+	cols[c.C_HardLinks] = true
+	cols[c.C_Owner] = true
+	cols[c.C_Group] = true
+	cols[c.C_Size] = true
 	cols[app.PrimaryTimeColName] = true
 	if app.Formatter.LongLinkTarget() {
-		cols[C_LinkTarget] = true
+		cols[c.C_LinkTarget] = true
 		nameParams.showLinks = true
 	}
 }
@@ -128,12 +127,12 @@ func (app *Application) longSet(cols map[string]bool, nameParams *FileNameParams
 func (app *Application) extraLongSet(cols map[string]bool, nameParams *FileNameParams) {
 	app.longSet(cols, nameParams)
 
-	cols[C_Inode] = true
-	cols[C_ModeOct] = true
-	cols[C_Blocks] = true
-	cols[C_MTime] = true
-	cols[C_CTime] = true
-	cols[C_ATime] = true
+	cols[c.C_Inode] = true
+	cols[c.C_ModeOct] = true
+	cols[c.C_Blocks] = true
+	cols[c.C_MTime] = true
+	cols[c.C_CTime] = true
+	cols[c.C_ATime] = true
 }
 
 func (app *Application) PostParse(args *lsargs.Arguments) *table.TableSpec {
@@ -165,16 +164,16 @@ func (app *Application) PostParse(args *lsargs.Arguments) *table.TableSpec {
 	}
 
 	if *args.Shortcut_t {
-		*args.Sort = S_TIME
+		*args.Sort = c.S_TIME
 	}
 	if *args.Shortcut_U {
-		*args.Sort = S_NONE
+		*args.Sort = c.S_NONE
 	}
 	if *args.Shortcut_S {
-		*args.Sort = S_SIZE
+		*args.Sort = c.S_SIZE
 	}
 	if *args.Shortcut_X {
-		*args.Sort = S_EXTENSION
+		*args.Sort = c.S_EXTENSION
 	}
 
 	{
@@ -192,17 +191,17 @@ func (app *Application) PostParse(args *lsargs.Arguments) *table.TableSpec {
 		quotingStyle = *args.QuotingStyle
 	}
 	if *args.Shortcut_literal {
-		quotingStyle = E_literal
+		quotingStyle = c.E_literal
 	}
 	if *args.Shortcut_escape {
-		quotingStyle = E_escape
+		quotingStyle = c.E_escape
 	}
 	switch quotingStyle {
 	case "":
-		quotingStyle = E_shell_escape
-	case E_locale:
+		quotingStyle = c.E_shell_escape
+	case c.E_locale:
 		log.Fatalf("unsupported --quoting-style=locale")
-	case E_none, E_literal, E_shell, E_shell_always, E_shell_escape, E_shell_escape_always, E_c, E_escape:
+	case c.E_none, c.E_literal, c.E_shell, c.E_shell_always, c.E_shell_escape, c.E_shell_escape_always, c.E_c, c.E_escape:
 		break
 	default:
 		log.Fatalf("invalid --quoting-style=%v", quotingStyle)
@@ -227,39 +226,39 @@ func (app *Application) PostParse(args *lsargs.Arguments) *table.TableSpec {
 		app.extraLongSet(cols, nameParams)
 	}
 	if *args.Inode {
-		cols[C_Inode] = true
+		cols[c.C_Inode] = true
 	}
 	if *args.Blocks {
-		cols[C_Blocks] = true
+		cols[c.C_Blocks] = true
 	}
 	if *args.ModeOct {
-		cols[C_ModeOct] = true
+		cols[c.C_ModeOct] = true
 	}
 	if *args.Mode {
-		cols[C_Mode] = true
+		cols[c.C_Mode] = true
 	}
 	if *args.Owner {
-		cols[C_Owner] = true
+		cols[c.C_Owner] = true
 	}
 	if *args.Group {
-		cols[C_Group] = true
+		cols[c.C_Group] = true
 	}
 	if *args.NoGroup {
-		cols[C_Group] = false
+		cols[c.C_Group] = false
 	}
 	if *args.Size {
-		cols[C_Size] = true
+		cols[c.C_Size] = true
 	}
 	if *args.Mtime {
-		cols[C_MTime] = true
+		cols[c.C_MTime] = true
 	}
 	if *args.Ctime {
-		cols[C_CTime] = true
+		cols[c.C_CTime] = true
 	}
 	if *args.Atime {
-		cols[C_ATime] = true
+		cols[c.C_ATime] = true
 	}
-	cols[C_Name] = true
+	cols[c.C_Name] = true
 
 	timeParams := &lstime.TimeParams{}
 	timeStyle := formatter.DefaultTimeStyle()

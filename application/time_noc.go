@@ -19,7 +19,7 @@ func (f *TimeGetterPlain) format(tm *time.Time) string {
 		return ""
 	}
 	if f.Relative {
-		return lstime.FormatDuration((*tm).Sub(time.Now()))
+		return lstime.FormatDuration(time.Until(*tm))
 	}
 	if f.UnixFormatStr != "" {
 		return Strftime(tm, f.UnixFormatStr)

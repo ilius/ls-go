@@ -22,6 +22,21 @@ func (s DefaultSorter) Less(i, j int) bool {
 	return s[i].Ext() < s[j].Ext()
 }
 
+type NumericNameSorter ItemSorter
+
+func (s NumericNameSorter) Len() int      { return len(s) }
+func (s NumericNameSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func (s NumericNameSorter) Less(i, j int) bool {
+	i_base := strings.ToLower(s[i].Basename())
+	j_base := strings.ToLower(s[j].Basename())
+
+	if i_base != j_base {
+		return i_base < j_base
+	}
+	return s[i].Ext() < s[j].Ext()
+}
+
 // sort by size in decending order
 type BySize ItemSorter
 
@@ -99,7 +114,7 @@ func (s ByTime) Less(i, j int) bool {
 	tm2 := s[j].Time
 	if tm1 == nil || tm2 == nil {
 		panic("time is nil")
-		return false
+		// return false
 	}
 	return (*tm1).After(*tm2)
 }

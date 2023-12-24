@@ -95,7 +95,7 @@ func Rgb2code(r uint8, g uint8, b uint8) uint8 {
 func Gray(lightness uint8) uint8 {
 	code := lightness + 232
 	if code < 232 || 255 < code {
-		panic(fmt.Errorf("Invalid lightness value (%d) for gray", lightness))
+		panic(fmt.Errorf("invalid lightness value (%d) for gray", lightness))
 	}
 	return code
 }

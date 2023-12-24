@@ -7,10 +7,10 @@ import (
 	"strconv"
 
 	"github.com/ilius/go-table"
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 )
 
-func NewSizeGetter(colors bool, format SizeFormat) table.Getter {
+func NewSizeGetter(colors bool, format c.SizeFormat) table.Getter {
 	if colors {
 		return &SizeGetter{format: format}
 	}
@@ -20,7 +20,7 @@ func NewSizeGetter(colors bool, format SizeFormat) table.Getter {
 var sizeUnits = []string{"B", "K", "M", "G", "T"}
 
 type SizeGetter struct {
-	format SizeFormat
+	format c.SizeFormat
 }
 
 // use metric system (or SI) to format size, powers of 1000
@@ -89,11 +89,11 @@ func (f *SizeGetter) Format(item any, value any) (string, error) {
 		return "", fmt.Errorf("Format: invalid value type %T, must be uint64", value)
 	}
 	switch f.format {
-	case SizeFormatInteger:
+	case c.SizeFormatInteger:
 		return strconv.FormatUint(size, 10), nil
-	case SizeFormatMetric:
+	case c.SizeFormatMetric:
 		return f.sizeStringMetric(size), nil
-	case SizeFormatLegacy:
+	case c.SizeFormatLegacy:
 		return f.sizeStringLegacy(size), nil
 	}
 	return "", fmt.Errorf("invalid size format %v", f.format)

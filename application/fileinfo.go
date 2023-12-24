@@ -5,7 +5,7 @@ import (
 	"io/fs"
 	"time"
 
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 	"github.com/ilius/ls-go/escape"
 	"github.com/ilius/ls-go/iface"
 )
@@ -90,12 +90,12 @@ func (info *FileInfoImp) PathDisplay() string {
 
 func (info *FileInfoImp) Time(colName string) *time.Time {
 	switch colName {
-	case C_MTime:
+	case c.C_MTime:
 		_time := info.ModTime()
 		return &_time
-	case C_CTime:
+	case c.C_CTime:
 		return app.Platform.FileCTime(info)
-	case C_ATime:
+	case c.C_ATime:
 		return app.Platform.FileATime(info)
 	}
 	panic(fmt.Errorf("invalid colName=%#v", colName))

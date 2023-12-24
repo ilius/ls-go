@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 )
 
 type FileNameGetterPlain struct {
@@ -57,7 +57,7 @@ func (f *FileNameGetterPlain) ValueString(colName string, item any) (string, err
 				target = link.target
 			}
 		}
-		targetFormatted, err := app.FormatValue(C_LinkTarget, target)
+		targetFormatted, err := app.FormatValue(c.C_LinkTarget, target)
 		if err != nil {
 			return "", err
 		}

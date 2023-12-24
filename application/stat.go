@@ -13,7 +13,7 @@ func printStats(colorsEnable bool, numFiles int, numDirs int) {
 		return
 	}
 	c := colors.Stats
-	duration := time.Now().Sub(*startTime)
+	duration := time.Since(*startTime)
 	milliSeconds := float64(duration.Microseconds()) / 1000.0
 	statStrings := []string{
 		app.Colorize(strconv.FormatInt(int64(numDirs), 10), c.Number),
@@ -27,7 +27,7 @@ func printStats(colorsEnable bool, numFiles int, numDirs int) {
 }
 
 func printStatsNoColor(numFiles int, numDirs int) {
-	duration := time.Now().Sub(*startTime)
+	duration := time.Since(*startTime)
 	milliSeconds := float64(duration.Microseconds()) / 1000.0
 	statStrings := []string{
 		strconv.FormatInt(int64(numDirs), 10),

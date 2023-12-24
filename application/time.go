@@ -61,7 +61,7 @@ func (f *TimeGetter) Format(item any, value any) (string, error) {
 }
 
 func timeWordColor(part string) *lscolors.Style {
-	if strings.IndexAny(part, "0123456789") < 0 {
+	if !strings.ContainsAny(part, "0123456789") {
 		return colors.Time.Word
 	}
 	if strings.Index(part, ":") > 0 {

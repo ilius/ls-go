@@ -4,26 +4,26 @@ import (
 	"fmt"
 	"strings"
 
-	. "github.com/ilius/ls-go/common"
+	c "github.com/ilius/ls-go/common"
 )
 
 func quoteFileName(in string) string {
 	switch app.QuotingStyle {
-	case E_none:
+	case c.E_none:
 		return in
-	case E_literal:
+	case c.E_literal:
 		return quoteLiteral(in)
-	case E_shell:
+	case c.E_shell:
 		return quoteShellGeneric(in, false, false)
-	case E_shell_always:
+	case c.E_shell_always:
 		return quoteShellGeneric(in, false, true)
-	case E_shell_escape:
+	case c.E_shell_escape:
 		return quoteShellGeneric(in, true, false)
-	case E_shell_escape_always:
+	case c.E_shell_escape_always:
 		return quoteShellGeneric(in, true, true)
-	case E_c:
+	case c.E_c:
 		return quoteC(in)
-	case E_escape:
+	case c.E_escape:
 		return quoteEscape(in)
 	}
 	return in
