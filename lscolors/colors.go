@@ -124,7 +124,7 @@ type DirColors struct {
 	Name       *Style `json:"name"`
 	Ext        *Style `json:"ext"`
 	HiddenName *Style `json:"hidden_name"`
-	HiddenExt  *Style `json:"hidden_name"`
+	HiddenExt  *Style `json:"hidden_ext"`
 }
 
 type LinkColors struct {
