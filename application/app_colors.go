@@ -76,7 +76,6 @@ var colors = col.Colors{
 		"exe":     {Light: col.Fg(1), Dark: col.Fg(1)},
 
 		"sharedlib": {Light: col.Fg(206), Dark: col.Fg(163)},
-
 		"compiled":  {Light: col.FgGray(8), Dark: col.FgGray(5)},
 		"compress":  {Light: col.Fg(196), Dark: col.Fg(124)},
 		"document":  {Light: col.Fg(196), Dark: col.Fg(124)},
@@ -98,10 +97,18 @@ var colors = col.Colors{
 		Word:        col.Fg(4),
 	},
 	Dir: col.DirColors{
-		Name:       &col.Style{Fg: col.Gray(23), Bg: 18, Bold: true},
-		Ext:        col.Fg(105),
-		HiddenName: &col.Style{Fg: col.Gray(23), Bg: 17, Bold: true},
-		HiddenExt:  col.Fg(105),
+		Name: &col.Style{
+			Fg:   col.Gray(23),
+			Bg:   18,
+			Bold: true,
+		},
+		Ext: col.Fg(105),
+		HiddenName: &col.Style{
+			Fg:   col.Gray(23),
+			Bg:   17,
+			Bold: true,
+		},
+		HiddenExt: col.Fg(105),
 	},
 	Tabular: &col.TabularColors{
 		FolderHeader: col.FolderHeaderColors{
@@ -114,7 +121,7 @@ var colors = col.Colors{
 		TableHeader: col.Fg(4),
 	},
 	Html: &col.HtmlColors{
-		Default: col.Bg(col.Gray(1)).SetFg(15),
+		Default: col.BgGray(1).SetFg(15),
 		FolderHeader: col.FolderHeaderColors{
 			Arrow:      col.Fg(136),
 			Main:       col.BgGray(2).SetFg(136),
@@ -125,17 +132,36 @@ var colors = col.Colors{
 		TableHeader: col.Fg(4),
 	},
 	Link: col.LinkColors{
-		Name:    col.Fg(46).SetBold(),
-		NameDir: &col.Style{Bg: 18, Fg: 51, Bold: true},
-		Arrow:   col.Fg(53),
-		Path:    col.Fg(164),
-		Broken:  col.Fg(196),
+		Name: col.Fg(46).SetBold(),
+		NameDir: &col.Style{
+			Bg:   18,
+			Fg:   51,
+			Bold: true,
+		},
+		Arrow:  col.Fg(53),
+		Path:   col.Fg(164),
+		Broken: col.Fg(196),
 	},
-	Device: &col.Style{Bg: col.Gray(3), Fg: 220, Bold: true},
-	Socket: &col.Style{Fg: 15, Bg: 53, Bold: true},
-	Pipe:   &col.Style{Fg: 15, Bg: 94, Bold: true},
+	Device: &col.Style{
+		Bg:   col.Gray(3),
+		Fg:   220,
+		Bold: true,
+	},
+	Socket: &col.Style{
+		Fg:   15,
+		Bg:   53,
+		Bold: true,
+	},
+	Pipe: &col.Style{
+		Fg:   15,
+		Bg:   94,
+		Bold: true,
+	},
 	Stats: col.StatsColors{
-		Text:   &col.Style{Bg: col.Gray(2), Fg: col.Gray(15)},
+		Text: &col.Style{
+			Bg: col.Gray(2),
+			Fg: col.Gray(15),
+		},
 		Number: col.Fg(24),
 		MS:     col.Fg(39),
 	},
@@ -153,7 +179,10 @@ var colors = col.Colors{
 			col.DEFAULT: col.Fg(90),
 		},
 		Other: map[string]*col.Style{
-			col.DEFAULT: {Bg: col.Gray(2), Fg: col.Gray(15)},
+			col.DEFAULT: {
+				Bg: col.Gray(2),
+				Fg: col.Gray(15),
+			},
 		},
 	},
 	Expr: col.ExprColors{
