@@ -154,10 +154,11 @@ func (m *Memory) ReadDir(name string) ([]fs.DirEntry, error) {
 		}
 	}
 
-	var entries []fs.DirEntry
-	for _, f := range m.s.Children(name) {
-		fi, _ := f.Stat()
-		entries = append(entries, &DirEntry{fi})
+	children := m.s.Children(name)
+	entries := make([]fs.DirEntry, len(children))
+	for index, file := range children {
+		fi, _ := file.Stat()
+		entries[index] = &DirEntry{fi}
 	}
 
 	return entries, nil
