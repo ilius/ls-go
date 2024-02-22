@@ -14,7 +14,7 @@ func ParseFileInfo(jsonBytes []byte) (*FakeFileInfo, error) {
 	info := NewFakeFileInfo()
 	err := json.Unmarshal(jsonBytes, info)
 	if err != nil {
-		return nil, fmt.Errorf("invalid FileInfo json %v\nerror: %v", string(jsonBytes), err)
+		return nil, fmt.Errorf("invalid FileInfo json %v\nerror: %w", string(jsonBytes), err)
 	}
 	err = info.Prepare()
 	if err != nil {
