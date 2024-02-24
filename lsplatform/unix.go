@@ -105,7 +105,7 @@ func (*LocalPlatform) OwnerAndGroupIDs(fileInfo FileInfo) (*OwnerGroup, error) {
 func (*LocalPlatform) NumberOfHardLinks(fileInfo FileInfo) (uint64, error) {
 	if sys := fileInfo.Sys(); sys != nil {
 		if stat, ok := sys.(*syscall.Stat_t); ok {
-			return uint64(stat.Nlink), nil
+			return stat.Nlink, nil
 		}
 	}
 	return 0, nil

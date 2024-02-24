@@ -10,12 +10,12 @@ import (
 
 func (*LocalPlatform) FileCTime(fileInfo FileInfo) *time.Time {
 	stat := fileInfo.Sys().(*syscall.Stat_t)
-	ctime := time.Unix(int64(stat.Ctim.Sec), int64(stat.Ctim.Nsec))
+	ctime := time.Unix(stat.Ctim.Sec, stat.Ctim.Nsec)
 	return &ctime
 }
 
 func (*LocalPlatform) FileATime(fileInfo FileInfo) *time.Time {
 	stat := fileInfo.Sys().(*syscall.Stat_t)
-	atime := time.Unix(int64(stat.Atim.Sec), int64(stat.Atim.Nsec))
+	atime := time.Unix(stat.Atim.Sec, stat.Atim.Nsec)
 	return &atime
 }
