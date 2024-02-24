@@ -8,8 +8,8 @@ github.com/ilius/go-colorable v1.0.0 h1:wJyq05I2VOnPKoPl6sKsv3V3N8tSkNGQl5Z22ZuH
 github.com/ilius/go-colorable v1.0.0/go.mod h1:C+ica4o2vNsfE86XclwTF/+yxAC64YwmHwUwbvxMJjk=
 github.com/ilius/go-lru v0.1.0 h1:6lkC8I4Ek24BPpn4XzaEX29nUjUu8wtQ4WEgyO1Qk0s=
 github.com/ilius/go-lru v0.1.0/go.mod h1:6BqKHgh68xAm4qHYrHnCSI+cw2SsfFnd6aPCP5CP058=
-github.com/ilius/go-table v0.7.2 h1:IEsEtbz+OBPyuleEWKJ8AFHRBR9FZU3gpK8p3QAVa6s=
-github.com/ilius/go-table v0.7.2/go.mod h1:nxuANak8qe9SKkejtJDH29M5BYjQPOnSiwkvcTjnwmE=
+github.com/ilius/go-table v0.7.3 h1:mSM1NVCGGc0CAPuE34i950asPbfGsS6jbbSq2KVJLGU=
+github.com/ilius/go-table v0.7.3/go.mod h1:nxuANak8qe9SKkejtJDH29M5BYjQPOnSiwkvcTjnwmE=
 github.com/ilius/goopt v0.1.0 h1:3k33NIJfTxxsLRpamfvotB8yNlDKt8h8Sg2+A+nciHQ=
 github.com/ilius/goopt v0.1.0/go.mod h1:ZGy2LsuXmoi5GNg0UzaSBCkg3VAGkzv5vfbFMdxIQLA=
 github.com/ilius/is/v2 v2.3.2 h1:14u2j/UTKeIHKlcp/48dabf7+7QJ9JJaaoeHVvfyAOk=
