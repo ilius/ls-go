@@ -116,7 +116,7 @@ func (s ByTime) Less(i, j int) bool {
 		panic("time is nil")
 		// return false
 	}
-	return (*tm1).After(*tm2)
+	return tm1.After(*tm2)
 }
 
 type ByExtension ItemSorter

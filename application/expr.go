@@ -269,7 +269,7 @@ func (f *ExprGetter) Format(item any, value any) (string, error) {
 		if vt == nil {
 			return "", nil
 		}
-		return app.Colorize((*vt).Format(exprTimeFormat), colors.Expr.Time), nil
+		return app.Colorize(vt.Format(exprTimeFormat), colors.Expr.Time), nil
 	case time.Time:
 		return app.Colorize(vt.Format(exprTimeFormat), colors.Expr.Time), nil
 	case time.Duration:

@@ -32,8 +32,8 @@ func quoteFileName(in string) string {
 // with "shell" and "literal", newline and tab is replaced with question mark!
 
 func quoteLiteral(in string) string {
-	in = strings.Replace(in, "\t", app.QuestionMark, -1)
-	in = strings.Replace(in, "\n", app.QuestionMark, -1)
+	in = strings.ReplaceAll(in, "\t", app.QuestionMark)
+	in = strings.ReplaceAll(in, "\n", app.QuestionMark)
 	return in
 }
 
@@ -106,9 +106,9 @@ func quoteC(in string) string {
 }
 
 func quoteEscape(in string) string {
-	in = strings.Replace(in, `\`, `\\`, -1)
-	in = strings.Replace(in, " ", `\ `, -1)
-	in = strings.Replace(in, "\t", `\n`, -1)
-	in = strings.Replace(in, "\n", `\n`, -1)
+	in = strings.ReplaceAll(in, `\`, `\\`)
+	in = strings.ReplaceAll(in, " ", `\ `)
+	in = strings.ReplaceAll(in, "\t", `\n`)
+	in = strings.ReplaceAll(in, "\n", `\n`)
 	return in
 }

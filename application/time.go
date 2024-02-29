@@ -44,7 +44,7 @@ func (f *TimeGetter) format(tm *time.Time) string {
 		return ""
 	}
 	if f.Relative {
-		return lstime.FormatDuration((*tm).Sub(*startTime))
+		return lstime.FormatDuration(tm.Sub(*startTime))
 	}
 	if f.UnixFormatStr != "" {
 		return Strftime(tm, f.UnixFormatStr)
