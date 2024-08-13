@@ -57,15 +57,15 @@ func (f *JsonFormatter) PrintError(w io.Writer, err error) {
 	// TODO: check if its file error, then call FileError
 	b, jerr := json.Marshal(err)
 	if jerr == nil {
-		w.Write(b)
-		w.Write([]byte{'\n'})
+		_, _ = w.Write(b)
+		_, _ = w.Write([]byte{'\n'})
 		return
 	}
 	b, _ = json.Marshal(map[string]string{
 		"error": err.Error(),
 	})
-	w.Write(b)
-	w.Write([]byte{'\n'})
+	_, _ = w.Write(b)
+	_, _ = w.Write([]byte{'\n'})
 }
 
 func (*JsonFormatter) FolderHeader(w io.Writer, path string, itemCount int) {}

@@ -233,7 +233,7 @@ func (app *Application) ListFiles(tableObj *table.Table, parentDir string, infoL
 				}
 			}
 		}
-		addCondCount++
+		// addCondCount++
 	}
 	if *args.HasMode != "" {
 		mode, err := strconv.ParseUint(*args.HasMode, 8, 16)
@@ -254,7 +254,7 @@ func (app *Application) ListFiles(tableObj *table.Table, parentDir string, infoL
 				}
 			}
 		}
-		addCondCount++
+		// addCondCount++
 	}
 	if filesOnly {
 		addDir = func(FileInfo) {}

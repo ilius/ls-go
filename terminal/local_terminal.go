@@ -41,9 +41,5 @@ func (fe *LocalTerminal) ColorsEnabled(colorFlag string) (bool, error) {
 // check if standard output is connected to a terminal
 func (f *LocalTerminal) OutputIsTerminal(stdout *os.File) bool {
 	o, _ := stdout.Stat()
-	if (o.Mode() & os.ModeCharDevice) == os.ModeCharDevice {
-		return true
-	}
-	// Pipe
-	return false
+	return (o.Mode() & os.ModeCharDevice) == os.ModeCharDevice
 }

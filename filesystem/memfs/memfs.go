@@ -25,7 +25,7 @@ type Memory struct {
 	// working directory
 	wd string
 
-	tempCount int
+	// tempCount int
 }
 
 // New returns a new Memory filesystem.

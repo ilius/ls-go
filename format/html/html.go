@@ -78,7 +78,7 @@ func (f *HtmlFormatter) SizeFormat() SizeFormat {
 	return SizeFormatLegacy // human-readable
 }
 
-func (f *HtmlFormatter) FileError(w io.Writer, err error, path string) {
+func (f *HtmlFormatter) FileError(w io.Writer, errArg error, path string) {
 	absPath, err := f.app.Abs(path)
 	check(err)
 	msg := "► " + absPath
@@ -86,7 +86,7 @@ func (f *HtmlFormatter) FileError(w io.Writer, err error, path string) {
 		msg = f.Colorize(msg, f.colors.FolderHeader.Error)
 	}
 	fmt.Fprintln(w, msg)
-	fmt.Fprintln(w, err.Error())
+	fmt.Fprintln(w, errArg.Error())
 }
 
 type getPathIface interface {
@@ -203,7 +203,7 @@ func (f *HtmlFormatter) FormatItem(tableObj *table.Table, item any) ([]string, e
 
 func (f *HtmlFormatter) PrintItems(w io.Writer, tableObj *table.Table, items iface.FormattedItemList) error {
 	bgColor := lscolors.TermColorsHex[int(f.colors.Default.Bg)]
-	fmt.Fprintln(w, fmt.Sprintf(`<table style="background-color:%s;font-family: monospace;">`, bgColor))
+	fmt.Fprintf(w, `<table style="background-color:%s;font-family: monospace;">\n`, bgColor)
 	for i := 0; i < items.Len(); i++ {
 		row := items.Get(i)
 		tdList := make([]string, len(row))

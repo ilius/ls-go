@@ -172,9 +172,9 @@ func (c *content) Len() int {
 	return len(c.bytes)
 }
 
-func isCreate(flag int) bool {
-	return flag&os.O_CREATE != 0
-}
+// func isCreate(flag int) bool {
+// 	return flag&os.O_CREATE != 0
+// }
 
 func isAppend(flag int) bool {
 	return flag&os.O_APPEND != 0

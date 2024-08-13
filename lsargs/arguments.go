@@ -101,11 +101,11 @@ const time_flag_desc = `Change the default of using modification times; Access t
 // TODO
 // birth time: birth, creation;
 
-func check(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
+// func check(err error) {
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// }
 
 func New() *Arguments {
 	return &Arguments{

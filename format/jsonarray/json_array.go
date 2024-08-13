@@ -57,15 +57,15 @@ func (f *JsonArrayFormatter) PrintError(w io.Writer, err error) {
 	// TODO: check if its file error, then call FileError
 	b, jerr := json.Marshal(err)
 	if jerr == nil {
-		w.Write(b)
-		w.Write([]byte{'\n'})
+		_, _ = w.Write(b)
+		_, _ = w.Write([]byte{'\n'})
 		return
 	}
 	b, _ = json.Marshal(map[string]string{
 		"error": err.Error(),
 	})
-	w.Write(b)
-	w.Write([]byte{'\n'})
+	_, _ = w.Write(b)
+	_, _ = w.Write([]byte{'\n'})
 }
 
 func (*JsonArrayFormatter) FolderHeader(w io.Writer, path string, itemCount int) {}
@@ -84,8 +84,8 @@ func (f *JsonArrayFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	if err != nil {
 		panic(err)
 	}
-	w.Write(jsonB)
-	w.Write([]byte{'\n'})
+	_, _ = w.Write(jsonB)
+	_, _ = w.Write([]byte{'\n'})
 }
 
 func (f *JsonArrayFormatter) Colorize(str string, style *lscolors.Style) string {
