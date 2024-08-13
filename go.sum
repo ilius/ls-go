@@ -2,8 +2,8 @@ github.com/ilius/consolesize-go v1.1.0 h1:/8JLzMHoyCoSjNAHav/3l/T6sfPaea8AfNDfbK
 github.com/ilius/consolesize-go v1.1.0/go.mod h1:iRSLhzGiiSiIQAx1HpZzDdYz1xU9Ear9QRJCIZKKsSU=
 github.com/ilius/etc v0.1.1 h1:mPvea+z/VlyhvHD4NPux/e95FQRY49PmoCLZc9jHTJM=
 github.com/ilius/etc v0.1.1/go.mod h1:MkUUAiB6tPqGh20ep0Tfdz5KJOJMaJIlWUtorxmBEfE=
-github.com/ilius/expr v1.10.4-0.20230123150142-60ff6902f173 h1:nC7S6ndefb4Mc41RNsfNf5ISmmJqlSfaG+VnyFCIb8A=
-github.com/ilius/expr v1.10.4-0.20230123150142-60ff6902f173/go.mod h1:PYvTr51f/sj7lPIDlGFv92vvtgANQ5bhSPOJ1L32rcM=
+github.com/ilius/expr v1.10.6 h1:bgaGAfbFlkKCNvZwJikDIP3lif9/HKpkTAWjdkc2qDU=
+github.com/ilius/expr v1.10.6/go.mod h1:PYvTr51f/sj7lPIDlGFv92vvtgANQ5bhSPOJ1L32rcM=
 github.com/ilius/go-colorable v1.0.0 h1:wJyq05I2VOnPKoPl6sKsv3V3N8tSkNGQl5Z22ZuHTY0=
 github.com/ilius/go-colorable v1.0.0/go.mod h1:C+ica4o2vNsfE86XclwTF/+yxAC64YwmHwUwbvxMJjk=
 github.com/ilius/go-lru v0.1.0 h1:6lkC8I4Ek24BPpn4XzaEX29nUjUu8wtQ4WEgyO1Qk0s=
