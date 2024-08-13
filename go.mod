@@ -1,6 +1,6 @@
 module github.com/ilius/ls-go
 
-go 1.20
+go 1.21
 
 require (
 	github.com/ilius/consolesize-go v1.1.0
