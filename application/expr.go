@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ilius/expr"
-	"github.com/ilius/expr/ast"
-	"github.com/ilius/expr/vm"
+	"github.com/expr-lang/expr"
+	"github.com/expr-lang/expr/ast"
+	"github.com/expr-lang/expr/vm"
 	"github.com/ilius/go-table"
 	"github.com/ilius/ls-go/common"
 	"github.com/ilius/ls-go/lstime"
