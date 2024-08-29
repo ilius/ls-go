@@ -118,7 +118,7 @@ With `-l` or `-s` / `--size`, print sizes like `1K`, `234M`, `2G`, etc.
 
 ### `--si`
 
-Like `--human-readable`, but use powers of 1000, not 1024.
+Use metric system for size. Like `--human-readable`, but use powers of 1000, not 1024.
 
 ### `--bytes`
 

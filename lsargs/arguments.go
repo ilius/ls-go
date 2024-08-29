@@ -154,7 +154,7 @@ func New() *Arguments {
 		SI: goopt.Flag(
 			[]string{"--si"},
 			nil,
-			"Like --human-readable, but use powers of 1000, not 1024",
+			"Use metric system for size. Like --human-readable, but use powers of 1000, not 1024",
 			"",
 		),
 		Bytes: goopt.Flag(
