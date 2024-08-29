@@ -2,7 +2,6 @@ package application
 
 import (
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 
@@ -17,33 +16,20 @@ func NewSizeGetter(colors bool, format c.SizeFormat) table.Getter {
 	return &SizeGetterPlain{format: format}
 }
 
-var sizeUnits = []string{"B", "K", "M", "G", "T"}
-
 type SizeGetter struct {
 	format c.SizeFormat
 }
 
-func (f *SizeGetter) formatFloat(sizeF float64) string {
-	// math.Mod(sizeF*10, 1) == 0 does not work!
-	if math.Mod(sizeF*10, 1) == 0 {
-		return strconv.FormatFloat(sizeF, 'f', 1, 64)
-	}
-	return strconv.FormatFloat(sizeF, 'f', 2, 64)
-}
-
 // use metric system (or SI) to format size, powers of 1000
 func (f *SizeGetter) sizeStringMetric(size uint64) string {
-	sizeFloat := float64(size)
-	for i, unit := range sizeUnits {
-		base := math.Pow(1000, float64(i))
-		if sizeFloat < base*1000 {
-			var sizeStr string
-			if i == 0 {
-				sizeStr = strconv.FormatUint(size, 10)
-			} else {
-				sizeStr = f.formatFloat(sizeFloat / base)
-			}
-			return app.Colorize(sizeStr+unit+" ", colors.Size[unit])
+	if size < 1000 {
+		sizeStr := strconv.FormatUint(size, 10)
+		return app.Colorize(sizeStr+"B ", colors.Size["B"])
+	}
+	for _, unit := range sizeUnits {
+		if unit.Next == nil || unit.Next.Metric > size {
+			sizeStr := formatSizeByBase(size, unit.Metric)
+			return app.Colorize(sizeStr+unit.Symbol+" ", colors.Size[unit.Symbol])
 		}
 	}
 	return strconv.FormatUint(size, 10)
@@ -51,18 +37,14 @@ func (f *SizeGetter) sizeStringMetric(size uint64) string {
 
 // use powers of 1024
 func (f *SizeGetter) sizeStringLegacy(size uint64) string {
-	sizeFloat := float64(size)
-	for i, unit := range sizeUnits {
-		base := math.Pow(1024, float64(i))
-		if sizeFloat < base*1024 {
-			var sizeStr string
-			if i == 0 {
-				sizeStr = strconv.FormatUint(size, 10)
-			} else {
-				sizeF := sizeFloat / base
-				sizeStr = f.formatFloat(sizeF)
-			}
-			return app.Colorize(sizeStr+unit+" ", colors.Size[unit])
+	if size < 1024 {
+		sizeStr := strconv.FormatUint(size, 10)
+		return app.Colorize(sizeStr+"B ", colors.Size["B"])
+	}
+	for _, unit := range sizeUnits {
+		if unit.Next == nil || unit.Next.Legacy > size {
+			sizeStr := formatSizeByBase(size, unit.Legacy)
+			return app.Colorize(sizeStr+unit.Symbol+" ", colors.Size[unit.Symbol])
 		}
 	}
 	return strconv.FormatUint(size, 10)

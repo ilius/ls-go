@@ -2,7 +2,6 @@ package application
 
 import (
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 
@@ -15,17 +14,14 @@ type SizeGetterPlain struct {
 
 // use metric system (or SI) to format size, powers of 1000
 func (f *SizeGetterPlain) sizeStringMetric(size uint64) string {
-	sizeFloat := float64(size)
-	for i, unit := range sizeUnits {
-		base := math.Pow(1000, float64(i))
-		if sizeFloat < base*1000 {
-			var sizeStr string
-			if i == 0 {
-				sizeStr = strconv.FormatUint(size, 10)
-			} else {
-				sizeStr = strconv.FormatFloat(sizeFloat/base, 'f', 2, 64)
-			}
-			return sizeStr + unit + " "
+	if size < 1000 {
+		sizeStr := strconv.FormatUint(size, 10)
+		return sizeStr + "B "
+	}
+	for _, unit := range sizeUnits {
+		if unit.Next == nil || unit.Next.Metric > size {
+			sizeStr := formatSizeByBase(size, unit.Metric)
+			return sizeStr + unit.Symbol + " "
 		}
 	}
 	return strconv.FormatUint(size, 10)
@@ -33,17 +29,14 @@ func (f *SizeGetterPlain) sizeStringMetric(size uint64) string {
 
 // use powers of 1024
 func (f *SizeGetterPlain) sizeStringLegacy(size uint64) string {
-	sizeFloat := float64(size)
-	for i, unit := range sizeUnits {
-		base := math.Pow(1024, float64(i))
-		if sizeFloat < base*1024 {
-			var sizeStr string
-			if i == 0 {
-				sizeStr = strconv.FormatUint(size, 10)
-			} else {
-				sizeStr = strconv.FormatFloat(sizeFloat/base, 'f', 2, 64)
-			}
-			return sizeStr + unit + " "
+	if size < 1024 {
+		sizeStr := strconv.FormatUint(size, 10)
+		return sizeStr + "B "
+	}
+	for _, unit := range sizeUnits {
+		if unit.Next == nil || unit.Next.Legacy > size {
+			sizeStr := formatSizeByBase(size, unit.Legacy)
+			return sizeStr + unit.Symbol + " "
 		}
 	}
 	return strconv.FormatUint(size, 10)
