@@ -1,5 +1,4 @@
 //go:build aix || darwin || dragonfly || freebsd || linux || netbsd || openbsd || zos
-// +build aix darwin dragonfly freebsd linux netbsd openbsd zos
 
 package lsplatform
 
