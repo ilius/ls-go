@@ -1,0 +1,26 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go on FreeBSD
+
+on:
+  push:
+    branches: [ "freebsd" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build-freebsd:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build on FreeBSD
+      id: test
+      uses: vmactions/freebsd-vm@v1
+      with:
+        run: |
+          pkg install --yes go
+          go version # go1.21.12 freebsd/amd64
+          # go build -v ./...
+          # go test -v ./...
