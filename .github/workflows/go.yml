@@ -26,3 +26,18 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+
+  build-freebsd:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test in FreeBSD
+      id: test
+      uses: vmactions/freebsd-vm@v1
+      with:
+        run: |
+          # Set up Go
+          pkg install --yes go
+          go version
+          # go build -v ./...
+          # go test -v ./...
