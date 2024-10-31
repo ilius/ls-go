@@ -8,7 +8,8 @@ import (
 	"github.com/ilius/go-table"
 )
 
-func NewOctalModeGetter(colors bool) table.Getter {
+func NewOctalModeGetter(_ bool) table.Getter {
+	// _: colors
 	return &OctModeGetter{}
 }
 

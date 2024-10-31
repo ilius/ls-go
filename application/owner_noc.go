@@ -22,7 +22,7 @@ func (f *OwnerGetterPlain) ValueString(colName string, item any) (string, error)
 	return app.FormatValue(colName, info.Owner())
 }
 
-func (f *OwnerGetterPlain) Format(item any, value any) (string, error) {
-	// item is FileInfo, value is string returned by .Value(item)
+func (f *OwnerGetterPlain) Format(_ any, value any) (string, error) {
+	// _: item is FileInfo, value is string returned by .Value(item)
 	return value.(string), nil
 }

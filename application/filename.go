@@ -92,7 +92,8 @@ func (f *FileNameGetter) ValueString(colName string, item any) (string, error) {
 	return str, nil
 }
 
-func (f *FileNameGetter) Format(item any, value any) (string, error) {
+func (f *FileNameGetter) Format(_ any, value any) (string, error) {
+	// _: item: not used
 	return value.(string), nil
 }
 

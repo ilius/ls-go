@@ -33,7 +33,7 @@ func (f *InodeGetter) ValueString(colName string, item any) (string, error) {
 	return app.FormatValue(colName, inode)
 }
 
-func (f *InodeGetter) Format(item any, value any) (string, error) {
-	// item is FileInfo, value is uint64 returned by .Value(item)
+func (f *InodeGetter) Format(_ any, value any) (string, error) {
+	// _: item is FileInfo, value is uint64 returned by .Value(item)
 	return strconv.FormatUint(value.(uint64), 10), nil
 }

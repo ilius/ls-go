@@ -39,8 +39,8 @@ func (f *OwnerGetter) ValueString(colName string, item any) (string, error) {
 	return app.FormatValue(colName, info.Owner())
 }
 
-func (f *OwnerGetter) Format(item any, value any) (string, error) {
-	// item is FileInfo, value is string returned by .Value(item)
+func (f *OwnerGetter) Format(_ any, value any) (string, error) {
+	// _: item is FileInfo, value is string returned by .Value(item)
 	owner := value.(string)
 	return app.Colorize(owner, getOwnerColor(owner)), nil
 }

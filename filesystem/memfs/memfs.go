@@ -188,6 +188,7 @@ func (fs *Memory) UserHomeDir() (string, error) {
 }
 
 // CountDirContents: returns the number of files/directories direnctly under a given directory
-func (fs *Memory) CountDirContents(name string) (int, error) {
+func (fs *Memory) CountDirContents(_ string) (int, error) {
+	// FIXME: it's counting the root dir, not the given dir as argument
 	return len(fs.s.children), nil
 }

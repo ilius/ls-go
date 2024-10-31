@@ -130,7 +130,8 @@ func (f *TabularFormatter) FolderHeader(w io.Writer, path string, itemCount int)
 	f.folderHeaderNoColor(w, path, itemCount)
 }
 
-func (f *TabularFormatter) folderHeader(w io.Writer, path string, itemCount int) {
+func (f *TabularFormatter) folderHeader(w io.Writer, path string, _ int) {
+	// _: itemCount
 	fhColors := f.colors.FolderHeader
 	headerString := fhColors.Arrow.S() + "►" + fhColors.Main.S() + " "
 	prettyPath := f.prettifyPath(path)
@@ -157,7 +158,8 @@ func (f *TabularFormatter) folderHeader(w io.Writer, path string, itemCount int)
 	fmt.Fprintln(w, headerString)
 }
 
-func (f *TabularFormatter) folderHeaderNoColor(w io.Writer, path string, itemCount int) {
+func (f *TabularFormatter) folderHeaderNoColor(w io.Writer, path string, _ int) {
+	// _: itemCount
 	headerString := "► "
 	prettyPath := f.prettifyPath(path)
 
@@ -175,7 +177,7 @@ func (f *TabularFormatter) folderHeaderNoColor(w io.Writer, path string, itemCou
 	fmt.Fprintln(w, headerString)
 }
 
-func (*TabularFormatter) FolderTail(w io.Writer, path string) {
+func (*TabularFormatter) FolderTail(w io.Writer, _ string) {
 	fmt.Fprintln(w, "")
 }
 
@@ -208,7 +210,8 @@ func (f *TabularFormatter) Colorize(str string, style *lscolors.Style) string {
 	return style.S() + str + Reset
 }
 
-func (*TabularFormatter) FormatValue(colName string, value any) (string, error) {
+func (*TabularFormatter) FormatValue(_ string, value any) (string, error) {
+	// _: colName
 	switch valueTyped := value.(type) {
 	case string:
 		return valueTyped, nil

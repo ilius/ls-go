@@ -89,9 +89,9 @@ func (f *CsvFormatter) PrintError(w io.Writer, err error) {
 	f.FileError(w, err, path)
 }
 
-func (*CsvFormatter) FolderHeader(w io.Writer, path string, itemCount int) {}
+func (*CsvFormatter) FolderHeader(_ io.Writer, _ string, _ int) {}
 
-func (*CsvFormatter) FolderTail(w io.Writer, path string) {}
+func (*CsvFormatter) FolderTail(_ io.Writer, _ string) {}
 
 func (f *CsvFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	if *f.args.NoHeader {
@@ -104,12 +104,13 @@ func (f *CsvFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	fmt.Fprintln(w, strings.Join(h, ","))
 }
 
-func (f *CsvFormatter) Colorize(str string, style *lscolors.Style) string {
+func (f *CsvFormatter) Colorize(str string, _ *lscolors.Style) string {
 	return str
 }
 
 // previously csvString
-func (f *CsvFormatter) FormatValue(colName string, value any) (string, error) {
+func (f *CsvFormatter) FormatValue(_ string, value any) (string, error) {
+	// _: colName
 	var valueStr string
 	switch valueTyped := value.(type) {
 	case string:
@@ -138,7 +139,7 @@ func (f *CsvFormatter) FormatItem(tableObj *table.Table, item any) ([]string, er
 	return []string{str}, nil
 }
 
-func (*CsvFormatter) PrintItems(w io.Writer, tableObj *table.Table, items iface.FormattedItemList) error {
+func (*CsvFormatter) PrintItems(w io.Writer, _ *table.Table, items iface.FormattedItemList) error {
 	for i := 0; i < items.Len(); i++ {
 		fmt.Fprintln(w, items.Get(i)[0])
 	}

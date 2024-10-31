@@ -157,7 +157,8 @@ func (app *Application) ListDir(tableObj *table.Table, path string) int {
 	return count
 }
 
-func (app *Application) ListFiles(tableObj *table.Table, parentDir string, infoList []FileInfo, forceDotfiles bool) {
+func (app *Application) ListFiles(tableObj *table.Table, _ string, infoList []FileInfo, forceDotfiles bool) {
+	// args: tableObj, parentDir, infoList, forceDotfiles
 	if *args.All || *args.AlmostAll {
 		forceDotfiles = true
 	}

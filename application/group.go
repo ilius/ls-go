@@ -36,8 +36,8 @@ func (f *GroupGetter) ValueString(colName string, item any) (string, error) {
 	return app.FormatValue(colName, info.Group())
 }
 
-func (f *GroupGetter) Format(item any, value any) (string, error) {
-	// item is FileInfo, value is string returned by .Value(item)
+func (f *GroupGetter) Format(_ any, value any) (string, error) {
+	// _: item is FileInfo, value is string returned by .Value(item)
 	group := value.(string)
 	return app.Colorize(group, getGroupColor(group)), nil
 }

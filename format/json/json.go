@@ -68,9 +68,9 @@ func (f *JsonFormatter) PrintError(w io.Writer, err error) {
 	_, _ = w.Write([]byte{'\n'})
 }
 
-func (*JsonFormatter) FolderHeader(w io.Writer, path string, itemCount int) {}
+func (*JsonFormatter) FolderHeader(_ io.Writer, _ string, _ int) {}
 
-func (*JsonFormatter) FolderTail(w io.Writer, path string) {}
+func (*JsonFormatter) FolderTail(_ io.Writer, _ string) {}
 
 func (f *JsonFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	if !*f.args.Header {
@@ -87,7 +87,7 @@ func (f *JsonFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	fmt.Fprintln(w, "{"+strings.Join(parts, ",")+"}")
 }
 
-func (f *JsonFormatter) Colorize(str string, style *lscolors.Style) string {
+func (f *JsonFormatter) Colorize(str string, _ *lscolors.Style) string {
 	return str
 }
 
@@ -105,7 +105,7 @@ func (*JsonFormatter) FormatItem(tableObj *table.Table, item any) ([]string, err
 	}, nil
 }
 
-func (*JsonFormatter) PrintItems(w io.Writer, tableObj *table.Table, items iface.FormattedItemList) error {
+func (*JsonFormatter) PrintItems(w io.Writer, _ *table.Table, items iface.FormattedItemList) error {
 	for i := 0; i < items.Len(); i++ {
 		fmt.Fprintln(w, items.Get(i)[0])
 	}

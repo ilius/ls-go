@@ -42,7 +42,8 @@ func (*JsonArrayFormatter) SizeFormat() SizeFormat {
 	return SizeFormatInteger
 }
 
-func (*JsonArrayFormatter) FileError(w io.Writer, err error, path string) {
+func (*JsonArrayFormatter) FileError(w io.Writer, err error, _ string) {
+	// _: path
 	jsonB, encodeErr := json.Marshal([]string{
 		"error",
 		err.Error(),
@@ -68,9 +69,9 @@ func (f *JsonArrayFormatter) PrintError(w io.Writer, err error) {
 	_, _ = w.Write([]byte{'\n'})
 }
 
-func (*JsonArrayFormatter) FolderHeader(w io.Writer, path string, itemCount int) {}
+func (*JsonArrayFormatter) FolderHeader(_ io.Writer, _ string, _ int) {}
 
-func (*JsonArrayFormatter) FolderTail(w io.Writer, path string) {}
+func (*JsonArrayFormatter) FolderTail(_ io.Writer, _ string) {}
 
 func (f *JsonArrayFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	if *f.args.NoHeader {
@@ -88,11 +89,12 @@ func (f *JsonArrayFormatter) TableHeader(w io.Writer, tableObj *table.Table) {
 	_, _ = w.Write([]byte{'\n'})
 }
 
-func (f *JsonArrayFormatter) Colorize(str string, style *lscolors.Style) string {
+func (f *JsonArrayFormatter) Colorize(str string, _ *lscolors.Style) string {
 	return str
 }
 
-func (f *JsonArrayFormatter) FormatValue(colName string, value any) (string, error) {
+func (f *JsonArrayFormatter) FormatValue(_ string, value any) (string, error) {
+	// _: colName
 	j_value, err := json.Marshal(value)
 	if err != nil {
 		return "", err
@@ -114,7 +116,7 @@ func (*JsonArrayFormatter) FormatItem(tableObj *table.Table, item any) ([]string
 	}, nil
 }
 
-func (*JsonArrayFormatter) PrintItems(w io.Writer, tableObj *table.Table, items iface.FormattedItemList) error {
+func (*JsonArrayFormatter) PrintItems(w io.Writer, _ *table.Table, items iface.FormattedItemList) error {
 	for i := 0; i < items.Len(); i++ {
 		fmt.Fprintln(w, items.Get(i)[0])
 	}

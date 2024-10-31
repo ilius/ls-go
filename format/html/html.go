@@ -152,7 +152,7 @@ func (f *HtmlFormatter) FolderHeader(w io.Writer, path string, itemCount int) {
 	fmt.Fprintln(w, headerString)
 }
 
-func (*HtmlFormatter) FolderTail(w io.Writer, path string) {
+func (*HtmlFormatter) FolderTail(w io.Writer, _ string) {
 	fmt.Fprintln(w, "<br/>")
 }
 
@@ -187,7 +187,8 @@ func (f *HtmlFormatter) Colorize(str string, style *lscolors.Style) string {
 	return fmt.Sprintf(`<span style='%s;'>%s</span>`, strings.Join(css, ";"), str)
 }
 
-func (f *HtmlFormatter) FormatValue(colName string, value any) (string, error) {
+func (f *HtmlFormatter) FormatValue(_ string, value any) (string, error) {
+	// _: colName
 	switch valueTyped := value.(type) {
 	case string:
 		return valueTyped, nil
@@ -201,7 +202,7 @@ func (f *HtmlFormatter) FormatItem(tableObj *table.Table, item any) ([]string, e
 	return tableObj.FormatItem(item)
 }
 
-func (f *HtmlFormatter) PrintItems(w io.Writer, tableObj *table.Table, items iface.FormattedItemList) error {
+func (f *HtmlFormatter) PrintItems(w io.Writer, _ *table.Table, items iface.FormattedItemList) error {
 	bgColor := lscolors.TermColorsHex[int(f.colors.Default.Bg)]
 	fmt.Fprintf(w, `<table style="background-color:%s;font-family: monospace;">\n`, bgColor)
 	for i := 0; i < items.Len(); i++ {

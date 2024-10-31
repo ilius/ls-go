@@ -40,9 +40,9 @@ func compileExpr(exprStr string) *vm.Program {
 
 type patcher struct{}
 
-func (p *patcher) Enter(_ *ast.Node)    {}
-func (p *patcher) Exit(node *ast.Node)  {}
-func (p *patcher) Visit(node *ast.Node) {}
+func (p *patcher) Enter(_ *ast.Node) {}
+func (p *patcher) Exit(_ *ast.Node)  {}
+func (p *patcher) Visit(_ *ast.Node) {}
 
 func parseDuration(s string) time.Duration {
 	dur, err := time.ParseDuration(s)
@@ -244,7 +244,8 @@ func (f *ExprGetter) ValueString(colName string, item any) (string, error) {
 	return app.FormatValue(colName, fmt.Sprintf("%v", value))
 }
 
-func (f *ExprGetter) Format(item any, value any) (string, error) {
+func (f *ExprGetter) Format(_ any, value any) (string, error) {
+	// _: item: not used
 	if !f.colors {
 		return fmt.Sprintf("%v", value), nil
 	}

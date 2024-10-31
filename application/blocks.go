@@ -23,7 +23,8 @@ func (f *BlocksGetter) ValueString(colName string, item any) (string, error) {
 	return app.FormatValue(colName, info.Blocks())
 }
 
-func (f *BlocksGetter) Format(item any, value any) (string, error) {
+func (f *BlocksGetter) Format(item any, _ any) (string, error) {
+	// _: value
 	info, ok := item.(FileInfo)
 	if !ok {
 		return "", fmt.Errorf("Format: invalid type %T, must be FileInfo", item)

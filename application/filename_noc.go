@@ -66,7 +66,7 @@ func (f *FileNameGetterPlain) ValueString(colName string, item any) (string, err
 	return str, nil
 }
 
-func (f *FileNameGetterPlain) Format(item any, value any) (string, error) {
+func (f *FileNameGetterPlain) Format(_ any, value any) (string, error) {
 	return value.(string), nil
 }
 

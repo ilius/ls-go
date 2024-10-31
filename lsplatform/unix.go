@@ -123,6 +123,7 @@ func (*LocalPlatform) EmptyFileInfoSys() any {
 	return &syscall.Stat_t{}
 }
 
-func (*LocalPlatform) OutputAndError(colors bool) (io.Writer, io.Writer) {
+func (*LocalPlatform) OutputAndError(_ bool) (io.Writer, io.Writer) {
+	// _: colors
 	return os.Stdout, os.Stderr
 }

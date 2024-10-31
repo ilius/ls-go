@@ -27,7 +27,7 @@ func (f *TimeGetterPlain) format(tm *time.Time) string {
 	return tm.Format(f.FormatStr)
 }
 
-func (f *TimeGetterPlain) Format(item any, value any) (string, error) {
+func (f *TimeGetterPlain) Format(_ any, value any) (string, error) {
 	tm, ok := value.(*time.Time)
 	if !ok {
 		return "", fmt.Errorf("invalid time type %T", value)

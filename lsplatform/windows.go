@@ -135,7 +135,7 @@ func (f *LocalPlatform) OwnerAndGroupIDs(info FileInfo) (*OwnerGroup, error) {
 	return f.OwnerAndGroupNames(info)
 }
 
-func (*LocalPlatform) DeviceNumbers(info FileInfo) (string, error) {
+func (*LocalPlatform) DeviceNumbers(_ FileInfo) (string, error) {
 	return "", nil
 }
 
@@ -230,7 +230,7 @@ func (*LocalPlatform) FileATime(info FileInfo) *time.Time {
 }
 
 // FileBlocks returns number of 1024-byte blocks occupied by a file
-func (*LocalPlatform) FileBlocks(info FileInfo) int64 {
+func (*LocalPlatform) FileBlocks(_ FileInfo) int64 {
 	// FIXME
 	// data := info.Sys().(*syscall.Win32FileAttributeData)
 	// data.FileSizeHigh is always zero
