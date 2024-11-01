@@ -201,7 +201,14 @@ func (app *Application) PostParse(args *lsargs.Arguments) *table.TableSpec {
 		quotingStyle = c.E_shell_escape
 	case c.E_locale:
 		log.Fatalf("unsupported --quoting-style=locale")
-	case c.E_none, c.E_literal, c.E_shell, c.E_shell_always, c.E_shell_escape, c.E_shell_escape_always, c.E_c, c.E_escape:
+	case c.E_none,
+		c.E_literal,
+		c.E_shell,
+		c.E_shell_always,
+		c.E_shell_escape,
+		c.E_shell_escape_always,
+		c.E_c,
+		c.E_escape:
 		break
 	default:
 		log.Fatalf("invalid --quoting-style=%v", quotingStyle)
