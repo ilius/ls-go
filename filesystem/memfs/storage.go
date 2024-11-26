@@ -164,7 +164,7 @@ func (c *content) WriteAt(p []byte, off int64) (int, error) {
 	return len(p), nil
 }
 
-func (c *content) ReadAt(b []byte, off int64) (n int, err error) {
+func (c *content) ReadAt(b []byte, off int64) (int, error) {
 	if off < 0 {
 		return 0, &os.PathError{
 			Op:   "readat",
@@ -184,10 +184,9 @@ func (c *content) ReadAt(b []byte, off int64) (n int, err error) {
 	}
 
 	btr := c.bytes[off : off+l]
+	var err error
 	if len(btr) < len(b) {
 		err = io.EOF
 	}
-	n = copy(b, btr)
-
-	return
+	return copy(b, btr), err
 }
