@@ -101,13 +101,13 @@ Supported values:
 - `none`
 - `name`: sort by full file name (basename and extension)
 - `basename`: sort by base name (name without extension)
-- `size`
+- `size`: sort by file or directory size
+- `filesize`: sort by file size only
 - `time`
 - `extension`
 - `kind`
 - `inode`
 - `links`: sort by number of hard links
-- `filesize`
 - `mode` (numeric file mode, includes permissions and file type)
 - `name-len`: length of file name
 
