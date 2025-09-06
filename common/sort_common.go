@@ -4,6 +4,7 @@ package common
 const (
 	S_NONE      = "none"
 	S_NAME      = "name"
+	S_BASENAME  = "basename"
 	S_SIZE      = "size"
 	S_TIME      = "time"
 	S_VERSION   = "version"

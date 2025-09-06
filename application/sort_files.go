@@ -16,6 +16,12 @@ func sortFiles(files []*DisplayItem, col string, reverse bool) {
 		} else {
 			sort.Sort(NameSorter(files))
 		}
+	case c.S_BASENAME:
+		if reverse {
+			sort.Sort(sort.Reverse(BasenameSorter(files)))
+		} else {
+			sort.Sort(BasenameSorter(files))
+		}
 	case c.S_SIZE:
 		if reverse {
 			sort.Sort(sort.Reverse(BySize(files)))
@@ -71,7 +77,7 @@ func sortFiles(files []*DisplayItem, col string, reverse bool) {
 		} else {
 			sort.Sort(ByNameLength(files))
 		}
-	default:
+	default: // default is (basename, extension)
 		if reverse {
 			sort.Sort(sort.Reverse(DefaultSorter(files)))
 		} else {

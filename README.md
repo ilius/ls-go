@@ -100,6 +100,7 @@ Supported values:
 
 - `none`
 - `name`: sort by full file name (basename and extension)
+- `basename`: sort by base name (name without extension)
 - `size`
 - `time`
 - `extension`

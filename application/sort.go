@@ -32,6 +32,15 @@ func (s NameSorter) Less(i, j int) bool {
 	return strings.ToLower(s[i].Name()) < strings.ToLower(s[j].Name())
 }
 
+type BasenameSorter ItemSorter
+
+func (s BasenameSorter) Len() int      { return len(s) }
+func (s BasenameSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func (s BasenameSorter) Less(i, j int) bool {
+	return strings.ToLower(s[i].Basename()) < strings.ToLower(s[j].Basename())
+}
+
 // sort by size in decending order
 type BySize ItemSorter
 
