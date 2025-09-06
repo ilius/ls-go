@@ -95,7 +95,9 @@ Do not list implied `.` and `..`
 
 ### `--sort=COLUMN`
 
-Sort by given column instead of basename.\
+By default, files / directories are sorted by basename (name without extension) then by extension (this is different than sorting by name).
+
+Use this flag to sort by given column.\
 Supported values:
 
 - `none`
