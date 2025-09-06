@@ -11,78 +11,127 @@ func sortFiles(files []*DisplayItem, col string, reverse bool) {
 	case c.S_NONE:
 		break // do not sort
 	case c.S_NAME:
-		if reverse {
-			sort.Sort(sort.Reverse(NameSorter(files)))
-		} else {
-			sort.Sort(NameSorter(files))
-		}
+		sortByName(files, reverse)
 	case c.S_BASENAME:
-		if reverse {
-			sort.Sort(sort.Reverse(BasenameSorter(files)))
-		} else {
-			sort.Sort(BasenameSorter(files))
-		}
+		sortByBasename(files, reverse)
 	case c.S_SIZE:
-		if reverse {
-			sort.Sort(sort.Reverse(BySize(files)))
-		} else {
-			sort.Sort(BySize(files))
-		}
+		sortBySize(files, reverse)
 	case c.S_FILESIZE:
-		if reverse {
-			sort.Sort(sort.Reverse(ByFileSize(files)))
-		} else {
-			sort.Sort(ByFileSize(files))
-		}
+		sortByFileSize(files, reverse)
 	case c.S_TIME:
-		if reverse {
-			sort.Sort(sort.Reverse(ByTime(files)))
-		} else {
-			sort.Sort(ByTime(files))
-		}
+		sortByTime(files, reverse)
 	// case S_VERSION:
 	case c.S_EXTENSION:
-		if reverse {
-			sort.Sort(sort.Reverse(ByExtension(files)))
-		} else {
-			sort.Sort(ByExtension(files))
-		}
+		sortByExtension(files, reverse)
 	case c.S_KIND:
-		if reverse {
-			sort.Sort(sort.Reverse(ByKind(files)))
-		} else {
-			sort.Sort(ByKind(files))
-		}
+		sortByKind(files, reverse)
 	case c.S_INODE:
-		if reverse {
-			sort.Sort(sort.Reverse(ByInode(files)))
-		} else {
-			sort.Sort(ByInode(files))
-		}
+		sortByInode(files, reverse)
 	case c.S_LINKS:
-		if reverse {
-			sort.Sort(sort.Reverse(ByHardLinks(files)))
-		} else {
-			sort.Sort(ByHardLinks(files))
-		}
+		sortByLinks(files, reverse)
 	case c.S_MODE:
-		if reverse {
-			sort.Sort(sort.Reverse(ByMode(files)))
-		} else {
-			sort.Sort(ByMode(files))
-		}
+		sortByMode(files, reverse)
 	case c.S_NAME_LEN:
-		if reverse {
-			sort.Sort(sort.Reverse(ByNameLength(files)))
-		} else {
-			sort.Sort(ByNameLength(files))
-		}
+		sortByNameLen(files, reverse)
 	default: // default is (basename, extension)
-		if reverse {
-			sort.Sort(sort.Reverse(DefaultSorter(files)))
-		} else {
-			sort.Sort(DefaultSorter(files))
-		}
+		sortDefault(files, reverse)
+	}
+}
+
+func sortByName(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(NameSorter(files)))
+	} else {
+		sort.Sort(NameSorter(files))
+	}
+}
+
+func sortByBasename(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(BasenameSorter(files)))
+	} else {
+		sort.Sort(BasenameSorter(files))
+	}
+}
+
+func sortBySize(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(BySize(files)))
+	} else {
+		sort.Sort(BySize(files))
+	}
+}
+
+func sortByFileSize(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByFileSize(files)))
+	} else {
+		sort.Sort(ByFileSize(files))
+	}
+}
+
+func sortByTime(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByTime(files)))
+	} else {
+		sort.Sort(ByTime(files))
+	}
+}
+
+func sortByExtension(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByExtension(files)))
+	} else {
+		sort.Sort(ByExtension(files))
+	}
+}
+
+func sortByKind(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByKind(files)))
+	} else {
+		sort.Sort(ByKind(files))
+	}
+}
+
+func sortByInode(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByInode(files)))
+	} else {
+		sort.Sort(ByInode(files))
+	}
+}
+
+func sortByLinks(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByHardLinks(files)))
+	} else {
+		sort.Sort(ByHardLinks(files))
+	}
+}
+
+func sortByMode(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByMode(files)))
+	} else {
+		sort.Sort(ByMode(files))
+	}
+}
+
+func sortByNameLen(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(ByNameLength(files)))
+	} else {
+		sort.Sort(ByNameLength(files))
+	}
+}
+
+// default is (basename, extension)
+func sortDefault(files []*DisplayItem, reverse bool) {
+	if reverse {
+		sort.Sort(sort.Reverse(DefaultSorter(files)))
+	} else {
+		sort.Sort(DefaultSorter(files))
 	}
 }
 
