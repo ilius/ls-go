@@ -42,12 +42,12 @@ func (s BasenameSorter) Less(i, j int) bool {
 }
 
 // sort by size in decending order
-type BySize ItemSorter
+type SizeSorter ItemSorter
 
-func (s BySize) Len() int      { return len(s) }
-func (s BySize) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s SizeSorter) Len() int      { return len(s) }
+func (s SizeSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s BySize) Less(i, j int) bool {
+func (s SizeSorter) Less(i, j int) bool {
 	info1 := s[i]
 	info2 := s[j]
 	if info1.IsDir() && info2.IsDir() {
@@ -60,14 +60,14 @@ func (s BySize) Less(i, j int) bool {
 	return info1.Size() > info2.Size()
 }
 
-// ByFileSize sorts files by size, and directories by lowercased name
+// FileSizeSorter sorts files by size, and directories by lowercased name
 // and sort directories after files
-type ByFileSize ItemSorter
+type FileSizeSorter ItemSorter
 
-func (s ByFileSize) Len() int      { return len(s) }
-func (s ByFileSize) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s FileSizeSorter) Len() int      { return len(s) }
+func (s FileSizeSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByFileSize) Less(i, j int) bool {
+func (s FileSizeSorter) Less(i, j int) bool {
 	info1 := s[i]
 	info2 := s[j]
 	if info1.IsDir() {
@@ -86,12 +86,12 @@ func (s ByFileSize) Less(i, j int) bool {
 // directories always come before files
 // and remember, this includes hidden contents as well, so to count
 // manually, use `ls -A1` or `ls-go -a1`
-type ByDirContentsCount ItemSorter
+type DirContentsCountSorter ItemSorter
 
-func (s ByDirContentsCount) Len() int      { return len(s) }
-func (s ByDirContentsCount) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s DirContentsCountSorter) Len() int      { return len(s) }
+func (s DirContentsCountSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByDirContentsCount) Less(i, j int) bool {
+func (s DirContentsCountSorter) Less(i, j int) bool {
 	info1 := s[i]
 	info2 := s[j]
 	if !info1.IsDir() {
@@ -106,12 +106,12 @@ func (s ByDirContentsCount) Less(i, j int) bool {
 }
 
 // sort by time (modified time by default) in decending order (newer first)
-type ByTime ItemSorter
+type TimeSorter ItemSorter
 
-func (s ByTime) Len() int      { return len(s) }
-func (s ByTime) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s TimeSorter) Len() int      { return len(s) }
+func (s TimeSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByTime) Less(i, j int) bool {
+func (s TimeSorter) Less(i, j int) bool {
 	// do NOT compare unix times (returned by _time.Unix)
 	// because of DST stuff, it's complicated
 	tm1 := s[i].Time
@@ -123,22 +123,22 @@ func (s ByTime) Less(i, j int) bool {
 	return tm1.After(*tm2)
 }
 
-type ByExtension ItemSorter
+type ExtensionSorter ItemSorter
 
-func (s ByExtension) Len() int      { return len(s) }
-func (s ByExtension) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s ExtensionSorter) Len() int      { return len(s) }
+func (s ExtensionSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByExtension) Less(i, j int) bool {
+func (s ExtensionSorter) Less(i, j int) bool {
 	return s[i].Ext() < s[j].Ext()
 }
 
-// ByKind tells `sort.Sort` how to sort by file extension
-type ByKind ItemSorter
+// KindSorter tells `sort.Sort` how to sort by file extension
+type KindSorter ItemSorter
 
-func (s ByKind) Len() int      { return len(s) }
-func (s ByKind) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s KindSorter) Len() int      { return len(s) }
+func (s KindSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByKind) Less(i, j int) bool {
+func (s KindSorter) Less(i, j int) bool {
 	var kindi, kindj string
 	if s[i].Basename() == "" {
 		kindi = "."
@@ -163,42 +163,42 @@ func (s ByKind) Less(i, j int) bool {
 	return kindi < kindj
 }
 
-type ByInode ItemSorter
+type InodeSorter ItemSorter
 
-func (s ByInode) Len() int      { return len(s) }
-func (s ByInode) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s InodeSorter) Len() int      { return len(s) }
+func (s InodeSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByInode) Less(i, j int) bool {
+func (s InodeSorter) Less(i, j int) bool {
 	inode1, _ := app.Platform.FileInode(s[i])
 	inode2, _ := app.Platform.FileInode(s[j])
 	return inode1 < inode2
 }
 
-type ByHardLinks ItemSorter
+type HardLinksSorter ItemSorter
 
-func (s ByHardLinks) Len() int      { return len(s) }
-func (s ByHardLinks) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s HardLinksSorter) Len() int      { return len(s) }
+func (s HardLinksSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByHardLinks) Less(i, j int) bool {
+func (s HardLinksSorter) Less(i, j int) bool {
 	n1, _ := app.Platform.NumberOfHardLinks(s[i])
 	n2, _ := app.Platform.NumberOfHardLinks(s[j])
 	return n1 > n2
 }
 
-type ByMode ItemSorter
+type ModeSorter ItemSorter
 
-func (s ByMode) Len() int      { return len(s) }
-func (s ByMode) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s ModeSorter) Len() int      { return len(s) }
+func (s ModeSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByMode) Less(i, j int) bool {
+func (s ModeSorter) Less(i, j int) bool {
 	return s[i].Mode() > s[j].Mode()
 }
 
-type ByNameLength ItemSorter
+type NameLengthSorter ItemSorter
 
-func (s ByNameLength) Len() int      { return len(s) }
-func (s ByNameLength) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+func (s NameLengthSorter) Len() int      { return len(s) }
+func (s NameLengthSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func (s ByNameLength) Less(i, j int) bool {
+func (s NameLengthSorter) Less(i, j int) bool {
 	return len(s[i].Name()) < len(s[j].Name())
 }

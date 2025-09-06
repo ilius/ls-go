@@ -56,73 +56,73 @@ func sortByBasename(files []*DisplayItem, reverse bool) {
 
 func sortBySize(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(BySize(files)))
+		sort.Sort(sort.Reverse(SizeSorter(files)))
 	} else {
-		sort.Sort(BySize(files))
+		sort.Sort(SizeSorter(files))
 	}
 }
 
 func sortByFileSize(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByFileSize(files)))
+		sort.Sort(sort.Reverse(FileSizeSorter(files)))
 	} else {
-		sort.Sort(ByFileSize(files))
+		sort.Sort(FileSizeSorter(files))
 	}
 }
 
 func sortByTime(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByTime(files)))
+		sort.Sort(sort.Reverse(TimeSorter(files)))
 	} else {
-		sort.Sort(ByTime(files))
+		sort.Sort(TimeSorter(files))
 	}
 }
 
 func sortByExtension(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByExtension(files)))
+		sort.Sort(sort.Reverse(ExtensionSorter(files)))
 	} else {
-		sort.Sort(ByExtension(files))
+		sort.Sort(ExtensionSorter(files))
 	}
 }
 
 func sortByKind(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByKind(files)))
+		sort.Sort(sort.Reverse(KindSorter(files)))
 	} else {
-		sort.Sort(ByKind(files))
+		sort.Sort(KindSorter(files))
 	}
 }
 
 func sortByInode(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByInode(files)))
+		sort.Sort(sort.Reverse(InodeSorter(files)))
 	} else {
-		sort.Sort(ByInode(files))
+		sort.Sort(InodeSorter(files))
 	}
 }
 
 func sortByLinks(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByHardLinks(files)))
+		sort.Sort(sort.Reverse(HardLinksSorter(files)))
 	} else {
-		sort.Sort(ByHardLinks(files))
+		sort.Sort(HardLinksSorter(files))
 	}
 }
 
 func sortByMode(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByMode(files)))
+		sort.Sort(sort.Reverse(ModeSorter(files)))
 	} else {
-		sort.Sort(ByMode(files))
+		sort.Sort(ModeSorter(files))
 	}
 }
 
 func sortByNameLen(files []*DisplayItem, reverse bool) {
 	if reverse {
-		sort.Sort(sort.Reverse(ByNameLength(files)))
+		sort.Sort(sort.Reverse(NameLengthSorter(files)))
 	} else {
-		sort.Sort(ByNameLength(files))
+		sort.Sort(NameLengthSorter(files))
 	}
 }
 
@@ -142,10 +142,10 @@ func sortDirs(dirs []*DisplayItem, col string, reverse bool) {
 	switch col {
 	case c.S_SIZE:
 		if reverse {
-			sort.Sort(sort.Reverse(ByDirContentsCount(dirs)))
+			sort.Sort(sort.Reverse(DirContentsCountSorter(dirs)))
 			return
 		}
-		sort.Sort(ByDirContentsCount(dirs))
+		sort.Sort(DirContentsCountSorter(dirs))
 		return
 	case c.S_FILESIZE:
 		if reverse {
