@@ -107,6 +107,7 @@ Supported values:
 - `links`: sort by number of hard links
 - `filesize`
 - `mode` (numeric file mode, includes permissions and file type)
+- `name-len`: length of file name
 
 ### `--size`, `-s`
 
