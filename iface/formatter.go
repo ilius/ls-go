@@ -13,7 +13,7 @@ type FormattedItemList interface {
 	Get(int) []string
 }
 
-type Formatter interface {
+type Formatter interface { //iface:ignore=unused
 	// LongLinkTarget returns true if symlink targets are to be shown with --long
 	LongLinkTarget() bool
 

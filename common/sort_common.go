@@ -13,6 +13,4 @@ const (
 	S_FILESIZE  = "filesize"
 	S_MODE      = "mode"
 	S_NAME_LEN  = "name-len"
-
-	S_NUMERIC_NAME = "numeric-name"
 )

@@ -65,12 +65,6 @@ func sortFiles(files []*DisplayItem, col string, reverse bool) {
 		} else {
 			sort.Sort(ByNameLength(files))
 		}
-	case c.S_NUMERIC_NAME:
-		if reverse {
-			sort.Sort(sort.Reverse(NumericNameSorter(files)))
-		} else {
-			sort.Sort(NumericNameSorter(files))
-		}
 	default:
 		if reverse {
 			sort.Sort(sort.Reverse(DefaultSorter(files)))
