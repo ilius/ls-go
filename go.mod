@@ -3,7 +3,7 @@ module github.com/ilius/ls-go
 go 1.21
 
 require (
-	github.com/expr-lang/expr v1.17.5
+	github.com/expr-lang/expr v1.17.6
 	github.com/ilius/consolesize-go v1.1.0
 	github.com/ilius/etc v0.1.1
 	github.com/ilius/go-colorable v1.1.0
