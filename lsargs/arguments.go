@@ -128,6 +128,7 @@ func New() *Arguments {
 				"",
 				S_NONE,
 				S_SIZE,
+				S_NAME,
 				S_TIME,
 				S_EXTENSION,
 				S_KIND,

@@ -10,6 +10,12 @@ func sortFiles(files []*DisplayItem, col string, reverse bool) {
 	switch col {
 	case c.S_NONE:
 		break // do not sort
+	case c.S_NAME:
+		if reverse {
+			sort.Sort(sort.Reverse(NameSorter(files)))
+		} else {
+			sort.Sort(NameSorter(files))
+		}
 	case c.S_SIZE:
 		if reverse {
 			sort.Sort(sort.Reverse(BySize(files)))

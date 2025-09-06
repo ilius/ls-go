@@ -99,6 +99,7 @@ Sort by given column instead of basename.\
 Supported values:
 
 - `none`
+- `name`: sort by full file name (basename and extension)
 - `size`
 - `time`
 - `extension`

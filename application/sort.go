@@ -22,6 +22,16 @@ func (s DefaultSorter) Less(i, j int) bool {
 	return s[i].Ext() < s[j].Ext()
 }
 
+// NameSorter sorts by full name
+type NameSorter ItemSorter
+
+func (s NameSorter) Len() int      { return len(s) }
+func (s NameSorter) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func (s NameSorter) Less(i, j int) bool {
+	return strings.ToLower(s[i].Name()) < strings.ToLower(s[j].Name())
+}
+
 // sort by size in decending order
 type BySize ItemSorter
 

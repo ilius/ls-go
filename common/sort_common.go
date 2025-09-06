@@ -3,6 +3,7 @@ package common
 // sort by (values of --sort=)
 const (
 	S_NONE      = "none"
+	S_NAME      = "name"
 	S_SIZE      = "size"
 	S_TIME      = "time"
 	S_VERSION   = "version"
